@@ -34,26 +34,31 @@ router.get('/:permission?', function (req, res, next) {
             res.status(500).json({ error: 'server error', response: err });
         }
         else {
-            var dbJSONObj = [];
-
-            for (var index = 0; index < rows[1].length; index++) {
-                var element = rows[1][index];
-                var jsonEl = {
-                    command: {
-                        name: element.command,
-                        permission: element.permission,
-                        cooldown: (element.cooldown === null) ? '0' : element.cooldown,
-                        price: (element.price === null) ? '0' : element.price
-                    }
-                };
-                dbJSONObj.push(jsonEl);
+            if (rows[0].length === 0) {
+                res.status(404).json({ error: 'no commands found matching criteria' });
             }
-            res.json({
-                description: 'list of custom commands filtered by given permission level',
-                filter: perm,
-                commandprefix: '!',
-                commandlist: dbJSONObj
-            });
+            else {
+                var dbJSONObj = [];
+
+                for (var index = 0; index < rows[1].length; index++) {
+                    var element = rows[1][index];
+                    var jsonEl = {
+                        command: {
+                            name: element.command,
+                            permission: element.permission,
+                            cooldown: (element.cooldown === null) ? '0' : element.cooldown,
+                            price: (element.price === null) ? '0' : element.price
+                        }
+                    };
+                    dbJSONObj.push(jsonEl);
+                }
+                res.json({
+                    description: 'list of custom commands filtered by given permission level',
+                    filter: perm,
+                    commandprefix: '!',
+                    commandlist: dbJSONObj
+                });
+            }
         }
     });
 });
