@@ -59,8 +59,8 @@ function queryApi(url, cb) {
                     });                    
                 });
             }).on('error', function (e) {
-                cb(err, null, null);
-                console.log('queryApi: error from https: ' + err);
+                cb(e, null, null);
+                console.log('queryApi: error from https: ' + e);
             });
         }
         else {
