@@ -19,7 +19,7 @@ $(document).ready(function() {
 function displayUser(user) {
     var userContent = '';    
 
-    $.getJSON('/userstats/' + user, function (data) {
+    $.getJSON('/api/v1//userstats/' + user, function (data) {
         if (data.userdetails.length > 0) {            
             userContent += '<li>Name: ' + data.userdetails[0].user.name + '</li>';
             userContent += '<li>Usergroup: ' + data.userdetails[0].user.group + '</li>';
@@ -73,7 +73,7 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/users/0/30', function( data ) {        
+    $.getJSON( '/api/v1/users/0/30', function( data ) {        
         $.each(data.rankedpointslist, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.user.rank + '</td>';

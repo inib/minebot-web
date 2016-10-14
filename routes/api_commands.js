@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var userName = '';
+var db = require('../modules/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

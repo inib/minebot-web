@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var channelstats = require('./routes/channelstats');
-var commands = require('./routes/commands');
+var commands = require('./routes/api_commands');
 var toplist = require('./routes/toplist');
-var users = require('./routes/users');
-var userstats = require('./routes/userstats');
+var users = require('./routes/api_users');
+var userstats = require('./routes/api_userstats');
 
 var db = require('./modules/db');
 
@@ -31,10 +31,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/stats', channelstats);
-app.use('/commands', commands);
 app.use('/toplist', toplist);
-app.use('/users', users);
-app.use('/userstats', userstats);
+app.use('/api/v1/commands', commands);
+app.use('/api/v1/users', users);
+app.use('/api/v1/userstats', userstats);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
