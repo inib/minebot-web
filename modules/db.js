@@ -46,6 +46,7 @@ function queryApi(url, cb) {
 
                 res.on('end', function () {
                     var response = JSON.parse(body);
+                    console.log(body);
                     memCon.set(queryHash, response, 300, function(err) {
 					if (err) { cb(err, null, null); }
                         cb(null, response, null);
