@@ -34,9 +34,14 @@ var memCon = new Memcache(memcachedConfig);
 
 function queryApi(url, cb) {
     var queryHash = crypto.createHash('sha512').update(url).digest("hex");
+    console.log('queryApi: ' + url);
     memCon.get(queryHash, function (err, data) {
-        if (err) { cb(err, null, null); }
+        if (err) { 
+            cb(err, null, null);
+            console.log('queryApi: ' + err);
+        }
         if (!data) {
+
             http.get(url, function (res) {
                 var body = '';
 
@@ -46,6 +51,7 @@ function queryApi(url, cb) {
 
                 res.on('end', function () {
                     var response = JSON.parse(body);
+                    console.log('queryApi: got data from https:');
                     console.log(body);
                     memCon.set(queryHash, response, 300, function(err) {
 					if (err) { cb(err, null, null); }
@@ -54,10 +60,13 @@ function queryApi(url, cb) {
                 });
             }).on('error', function (e) {
                 cb(err, null, null);
+                console.log('queryApi: error from https: ' + err);
             });
         }
         else {
             cb(null, data, null);
+            console.log('queryApi: got data from cache:');
+            console.log(data);
         }
     });
 }
