@@ -35,6 +35,10 @@ var memCon = new Memcache(memcachedConfig);
 function queryApi(url, cb) {
     var queryHash = crypto.createHash('sha512').update(url).digest("hex");
     console.log('queryApi: ' + url);
+    var reqOptions = {
+        hostname: url,
+        rejectUnauthorized: false
+    }
     memCon.get(queryHash, function (err, data) {
         if (err) { 
             cb(err, null, null);
@@ -42,7 +46,7 @@ function queryApi(url, cb) {
         }
         if (!data) {
 
-            http.get(url, function (res) {
+            http.get(reqOptions, function (res) {
                 var body = '';
 
                 res.on('data', function (chunk) {
