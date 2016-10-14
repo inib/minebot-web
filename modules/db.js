@@ -27,6 +27,35 @@ var memento = new Memento({
 		memcached: memcachedConfig
 });
 
+var Memcache = new require('memcached');
+var memCon = new Memcache(memcachedConfig);
+
+function queryApi(url, cb) {
+    var queryHash = crypto.createHash('sha512').update(url).digest("hex");
+    memCon.get(queryHash, function (err, data) {
+        if (err) { cb(err, null, null); }
+        if (!data) {
+            http.get(url, function (res) {
+                var body = '';
+
+                res.on('data', function (chunk) {
+                    body += chunk;
+                });
+
+                res.on('end', function () {
+                    var response = JSON.parse(body);
+                    cb(null, response, null);
+                });
+            }).on('error', function (e) {
+                cb(err, null, null);
+            });
+        }
+        else {
+            cb(null, data, null);
+        }
+    });
+}
+
 function queryC(sql, cb) {
     memento.query(sql, cb);
 }
@@ -52,5 +81,8 @@ module.exports = {
     },
     querySQL: function (sql, cb) {
         queryDB(sql,cb);
+    },
+    queryURL: function (sql, cb) {
+        queryApi(sql,cb);
     }
 };
