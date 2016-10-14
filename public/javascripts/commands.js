@@ -42,9 +42,9 @@ function populateTable() {
         $.each(data.commandlist, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + data.commandprefix + this.command.name + '</td>';
-            tableContent += '<td>' + getIcon(this.command.permission) + '</td>';
             tableContent += '<td>' + this.command.response + '</td>';
-            tableContent += '<td>' + this.command.cooldown + '</td>';
+            tableContent += '<td>' + getIcon(this.command.permission) + '</td>';
+            tableContent += '<td>' + this.command.cooldown + 's</td>';
             tableContent += '<td>' + this.command.price + '</td>';
             tableContent += '</tr>';            
         });
