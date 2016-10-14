@@ -41,11 +41,12 @@ router.get('/:permission?', function (req, res, next) {
             else {
                 var dbJSONObj = [];
 
-                for (var index = 0; index < rows[1].length; index++) {
+                for (var index = 0; index < rows[0].length; index++) {
                     var element = rows[0][index];
                     var jsonEl = {
                         command: {
                             name: element.command,
+                            response: element.response,
                             permission: element.permission,
                             cooldown: (element.cooldown === null) ? '0' : element.cooldown,
                             price: (element.price === null) ? '0' : element.price
