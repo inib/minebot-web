@@ -63,7 +63,7 @@ var twitchNameExp = new RegExp('^[a-zA-Z0-9][\\w]{2,24}$');
                              brawlwins: (element.brawlwins === null) ? '0' : element.brawlwins,
                              customrank: (element.customrank === null) ? 'keinen' : element.customrank
                          }
-                     }
+                     };
                      dbJSONObj.push(jsonEl);
                      res.json({userdetails: dbJSONObj});
                  }

@@ -3,7 +3,7 @@ var dbHost = process.env.DB_HOST;
 var dbName = process.env.DB_NAME;
 var dbPass = process.env.DB_PASS;
 var crypto = require('crypto');
-const http = require('https');
+var http = require('https');
 
 var mysql = require('mysql');
 var pool = mysql.createPool({
@@ -38,7 +38,7 @@ function queryApi(url, cb) {
         host: 'twitchstats.io',
         path: url,
         rejectUnauthorized: false
-    }
+    };
     memCon.get(queryHash, function (err, data) {
         if (err) { 
             cb(err, null, null);            
@@ -68,6 +68,8 @@ function queryApi(url, cb) {
         }
     });
 }
+
+
 
 function queryC(sql, cb) {
     memento.query(sql, cb);

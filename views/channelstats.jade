@@ -8,7 +8,7 @@ block pageTitle
 block pageContent
 
     #wrapper.row
-        .col-md-8.col-sm-8.col-xs-12
+        .col-md-6.col-sm-6.col-xs-12
             .panel.panel-default
                 .panel-body
                     p
@@ -23,12 +23,12 @@ block pageContent
                 .panel-heading
                     h3 Top Chatters
                 #chatList.panel-body
-                   table.table.table-striped
-                       thead
-                           th
-                           th Chatter
-                           th Lines
-                       tbody
+                    table.table.table-striped
+                        thead
+                            th
+                            th Chatter
+                            th Lines
+                        tbody
                             !{chatterList}
 
         .col-md-6.col-sm-6.col-xs-12
@@ -36,10 +36,10 @@ block pageContent
                 .panel-heading
                     h3 Top Emotes
                 #emoteList.panel-body
-                   table.table.table-striped
-                       thead
+                    table.table.table-striped
+                        thead
                             th
                             th Emote
                             th Anzahl
-                       tbody
+                        tbody
                             !{emoteList}
