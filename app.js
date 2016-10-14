@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var channelstats = require('./routes/channelstats');
 var toplist = require('./routes/toplist');
 var commandlist = require('./routes/commandlist');
+
 var commands = require('./routes/api_commands');
 var users = require('./routes/api_users');
 var userstats = require('./routes/api_userstats');
@@ -30,10 +31,12 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Render routes
 app.use('/', index);
 app.use('/stats', channelstats);
 app.use('/toplist', toplist);
 app.use('/commands', commandlist);
+// Api routes
 app.use('/api/v1/commands', commands);
 app.use('/api/v1/users', users);
 app.use('/api/v1/userstats', userstats);
