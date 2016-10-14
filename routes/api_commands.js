@@ -41,8 +41,8 @@ router.get('/:permission?', function (req, res, next) {
             else {
                 var dbJSONObj = [];
 
-                for (var index = 0; index < rows[0].length; index++) {
-                    var element = rows[0][index];
+                for (var index = 0; index < rows.length; index++) {
+                    var element = rows[index];
                     var jsonEl = {
                         command: {
                             name: element.command,
