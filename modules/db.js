@@ -46,7 +46,10 @@ function queryApi(url, cb) {
 
                 res.on('end', function () {
                     var response = JSON.parse(body);
-                    cb(null, response, null);
+                    memCon.set(queryHash, response, 300, function(err) {
+					if (err) { cb(err, null, null); }
+                        cb(null, response, null);
+                    });                    
                 });
             }).on('error', function (e) {
                 cb(err, null, null);
