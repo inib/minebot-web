@@ -20,13 +20,13 @@ function getIcon(group) {
     var icoHTML = '';
     switch (group) {
         case '3':
-            icoHTML += '<span class="ico sub"></span>Subscriber';
+            icoHTML += '<span class="ico sub"></span>';
             break;
         case '2':
-            icoHTML += '<span class="ico mod"></span>Moderator';
+            icoHTML += '<span class="ico mod"></span>';
             break;
         case ('1' || '0'):
-            icoHTML += '<span class="ico broad"></span><span class="ico staff"></span>Broadcaster/Admin';
+            icoHTML += '<span class="ico broad"></span><span class="ico staff"></span>';
             break;
         default: icoHTML = 'Viewer';
     }
@@ -41,8 +41,9 @@ function populateTable() {
     $.getJSON( '/api/v1/commands/7/', function( data ) {        
         $.each(data.commandlist, function(){
             tableContent += '<tr>';
-            tableContent += '<td>' + data.prefix + this.command.name + '</td>';
+            tableContent += '<td>' + data.commandprefix + this.command.name + '</td>';
             tableContent += '<td>' + getIcon(this.command.permission) + '</td>';
+            tableContent += '<td>' + this.command.response + '</td>';
             tableContent += '<td>' + this.command.cooldown + '</td>';
             tableContent += '<td>' + this.command.price + '</td>';
             tableContent += '</tr>';            
