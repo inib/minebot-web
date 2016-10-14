@@ -1,20 +1,25 @@
+var dbUser = process.env.DB_USER;
+var dbHost = process.env.DB_HOST;
+var dbName = process.env.DB_NAME;
+var dbPass = process.env.DB_PASS;
+
 var mysql = require('mysql');
 var pool = mysql.createPool({
-  connectionLimit : 10,
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASS,
-  database : process.env.DB_NAME,
+  connectionLimit: 10,
+  host: dbHost,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
   multipleStatements: true
 });
 
 var Memento = require('memento-mysql');
 var memcachedConfig = process.env.MEMCACHED_ADDR;
 var mysqlConfig = {
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASS,
-  database : process.env.DB_NAME,
+  host: dbHost,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
   multipleStatements: true
 };
 var memento = new Memento({
