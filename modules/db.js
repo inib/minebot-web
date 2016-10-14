@@ -33,8 +33,7 @@ var Memcache = new require('memcached');
 var memCon = new Memcache(memcachedConfig);
 
 function queryApi(url, cb) {
-    var queryHash = crypto.createHash('sha512').update(url).digest("hex");
-    console.log('queryApi: ' + url);
+    var queryHash = crypto.createHash('sha512').update(url).digest("hex");    
     var reqOptions = {
         host: 'twitchstats.io',
         path: url,
@@ -42,8 +41,7 @@ function queryApi(url, cb) {
     }
     memCon.get(queryHash, function (err, data) {
         if (err) { 
-            cb(err, null, null);
-            console.log('queryApi: ' + err);
+            cb(err, null, null);            
         }
         if (!data) {
 
@@ -56,22 +54,17 @@ function queryApi(url, cb) {
 
                 res.on('end', function () {
                     var response = JSON.parse(body);
-                    console.log('queryApi: got data from https:');
-                    console.log(body);
                     memCon.set(queryHash, response, 300, function(err) {
 					if (err) { cb(err, null, null); }
                         cb(null, response, null);
                     });                    
                 });
             }).on('error', function (e) {
-                cb(e, null, null);
-                console.log('queryApi: error from https: ' + e);
+                cb(e, null, null);                
             });
         }
         else {
             cb(null, data, null);
-            console.log('queryApi: got data from cache:');
-            console.log(data);
         }
     });
 }

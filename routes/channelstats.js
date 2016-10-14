@@ -44,8 +44,7 @@ function getChatterList(cb) {
                 tableContent += '</tr>';
             }
             cb(null, tableContent);
-        }
-        console.log(tableContent);
+        }        
     });
 }
 
@@ -65,8 +64,7 @@ function getEmoteList(cb) {
                 tableContent += '</tr>';
             }
             cb(null, tableContent);
-        }
-        console.log(tableContent);
+        }        
     });
 }
 
