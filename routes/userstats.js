@@ -40,7 +40,7 @@ var twitchNameExp = new RegExp('^[a-zA-Z0-9][\\w]{2,24}$');
      else {
          var userName = req.params.userName.toLowerCase();
          var q = query1 + query2.replace('$name', userName);
-         db.querySQL(q, function (err, rows, fields) {
+         db.queryCache(q, function (err, rows, fields) {
              if (err) {
                  res.status(500).json({ error: 'server error', response: err });
              }
