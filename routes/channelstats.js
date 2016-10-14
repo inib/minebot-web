@@ -67,6 +67,7 @@ function getEmoteList() {
             tableContent += '<td>' + element.amount + '</td>';
             tableContent += '</tr>';
         }
+        return tableContent;
     });
 }
 
