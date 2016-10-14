@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../modules/db');
-var chatURL = 'twitchstats.io/api/channel/germandota/initial/';
-var emoteURL = 'twitchstats.io/api/emote/';
+var chatURL = '/api/channel/germandota/initial';
+var emoteURL = '/api/emote';
 
 function getIcon(name, group, sub) {
     var icoHTML = '';
