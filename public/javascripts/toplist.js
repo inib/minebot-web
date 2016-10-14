@@ -19,7 +19,7 @@ $(document).ready(function() {
 function displayUser(user) {
     var userContent = '';    
 
-    $.getJSON('/api/v1//userstats/' + user, function (data) {
+    $.getJSON('/api/v1/userstats/' + user, function (data) {
         if (data.userdetails.length > 0) {            
             userContent += '<li>Name: ' + data.userdetails[0].user.name + '</li>';
             userContent += '<li>Usergroup: ' + data.userdetails[0].user.group + '</li>';
