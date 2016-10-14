@@ -42,6 +42,7 @@ function getChatterList() {
             tableContent += '<td>' + element.amount + '</td>';
             tableContent += '</tr>';
         }
+        console.log(tableContent);
         return tableContent;
     });
 }
@@ -55,7 +56,7 @@ function getEmoteName(id) {
 
 function getEmoteList() {
     var tableContent = '';
-    db.queryURL(chatURL, function (err, data) {
+    db.queryURL(emoteURL, function (err, data) {
         if (err || data === null) { return '<p>No data</p>'; }
         var emotes = data.emotes_twitch.splice(0, 15);
         for (var index = 0; index < emotes.length; index++) {
@@ -67,6 +68,7 @@ function getEmoteList() {
             tableContent += '<td>' + element.amount + '</td>';
             tableContent += '</tr>';
         }
+        console.log(tableContent);
         return tableContent;
     });
 }
