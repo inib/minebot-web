@@ -5,7 +5,7 @@ var db = require('../modules/db');
 /* GET Data. */
 router.get('/:permission?', function(req, res, next) {
 
-  var perm = parseInt(!isNaN(req.params.permission) ? req.params.permission : -1);
+  var perm = parseInt(!isNaN(req.params.permission) ? req.params.permission : 7);
   var query =   'SELECT 		t1.variable AS \'command\','+
 		        't1.value AS \'response\','+
 			    't2.value AS \'cooldown\','+
