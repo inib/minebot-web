@@ -29,54 +29,64 @@ function getIcon(name, group, sub) {
     }
 }
 
-function getChatterList() {
+function getChatterList(cb) {
     var tableContent = '';
-    db.queryURL(chatURL, function (err, data) {
-        if (err || data === null) { return '<p>No data</p>'; }
-        var chatters = data.chatlines_chatters.splice(0, 15);
-        for (var index = 0; index < chatters.length; index++) {
-            var element = chatters[index];
-            tableContent += '<tr>';
-            tableContent += '<td>' + index + '.</td>';
-            tableContent += '<td>' + element.key + '</td>';
-            tableContent += '<td>' + element.amount + '</td>';
-            tableContent += '</tr>';
+    db.queryURL(chatURL, function (err, data, cb) {
+        if (err || data === null) { cb(err, '<p>No data</p>'); }
+        else {
+            var chatters = data.chatlines_chatters.splice(0, 15);
+            for (var index = 0; index < chatters.length; index++) {
+                var element = chatters[index];
+                tableContent += '<tr>';
+                tableContent += '<td>' + index + '.</td>';
+                tableContent += '<td>' + element.key + '</td>';
+                tableContent += '<td>' + element.amount + '</td>';
+                tableContent += '</tr>';
+            }
+            cb(null, tableContent);
         }
         console.log(tableContent);
-        return tableContent;
     });
 }
 
 function getEmoteName(id) {
-    db.queryURL(emoteURL, function (err, data) {
-        if (err) { return ''; }
-        return data.name;
+    db.queryURL(emoteURL, function (err, data, cb) {
+        if (err) {cb(err,''); }
+        else { cb(null,data); }
     });
 }
 
-function getEmoteList() {
+function getEmoteList(cb) {
     var tableContent = '';
-    db.queryURL(emoteURL, function (err, data) {
-        if (err || data === null) { return '<p>No data</p>'; }
-        var emotes = data.emotes_twitch.splice(0, 15);
-        for (var index = 0; index < emotes.length; index++) {
-            var element = emotes[index];
-            var emoteName = getEmoteName(element.key);
-            tableContent += '<tr>';
-            tableContent += '<td>' + index + '.</td>';
-            tableContent += '<td><i src="https://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
-            tableContent += '<td>' + element.amount + '</td>';
-            tableContent += '</tr>';
+    db.queryURL(emoteURL, function (err, data, cb) {
+        if (err || data === null) { cb(err, '<p>No data</p>'); }
+        else {
+            var emotes = data.emotes_twitch.splice(0, 15);
+            for (var index = 0; index < emotes.length; index++) {
+                var element = emotes[index];
+                var emoteName = getEmoteName(element.key);
+                tableContent += '<tr>';
+                tableContent += '<td>' + index + '.</td>';
+                tableContent += '<td><i src="https://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
+                tableContent += '<td>' + element.amount + '</td>';
+                tableContent += '</tr>';
+            }
+            cb(null, tableContent);
         }
         console.log(tableContent);
-        return tableContent;
     });
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     userName = req.params.userName;
-    res.render('channelstats', { title: 'Channel Statistik', chatterList: getChatterList(), emoteList: getEmoteList() });
+    getChatterList(function (err, data) {
+        var chatList = data;
+        getEmoteList(function(err, data){
+            var emoteList = data;
+            res.render('channelstats', { title: 'Channel Statistik', chatterList: chatList, emoteList: emoteList });
+        });
+    });    
 });
 
 module.exports = router;
