@@ -1,0 +1,38 @@
+extends layout
+
+block pageTitle
+    .container
+        .page-header
+            h1= title
+
+block pageContent
+
+    #wrapper.row
+        .col-md-6.col-sm-8.col-xs-12
+            .panel.panel-default
+                .panel-body
+                    p
+                        span.glyphicon.glyphicon-hand-right
+                        span.sr-only Hinweis:
+                        | Inhalt
+
+        .clearfix.visible-lg-block.visible-md-block.visible-sm-block
+
+        .col-md-6.col-sm-8.col-xs-12
+            .panel.panel-default
+                .panel-heading
+                    h3.panel-title Panel
+                .panel-body
+                    p Inhalt
+
+        .col-lg-6.col-md-6.col-sm-8.col-xs-12
+            row
+                .col-md-12
+                    .panel.panel-default
+                        .panel-heading
+                            h3.panel-title Panel
+                        .panel-body
+                            p Inhalt
+ 
+
+                .col-md-12

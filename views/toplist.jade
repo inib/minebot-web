@@ -1,0 +1,49 @@
+extends layout
+
+block pageTitle 
+    .container
+        .page-header
+            h1= title
+
+block pageContent
+
+    #wrapper.row
+        .col-md-6.col-sm-8.col-xs-12
+            .panel.panel-default
+                .panel-body
+                    p
+                        span.glyphicon.glyphicon-hand-right
+                        span.sr-only Hinweis:
+                        | Subscriber erhalten #[strong 16] Schoki alle 10 Minuten während eines Streams.
+                    p
+                        span.glyphicon.glyphicon-hand-right
+                        span.sr-only Hinweis:
+                        | Nicht-Subscriber erhalten #[strong 8] Schoki alle 10 Minuten während eines Streams.
+
+        .clearfix.visible-lg-block.visible-md-block.visible-sm-block
+
+        .col-md-6.col-sm-8.col-xs-12
+            .panel.panel-default
+               #userList.panel-body
+                   table.table.table-striped
+                       thead
+                           th Platz
+                           th Username
+                           th Schoki
+                       tbody
+
+        .col-lg-6.col-md-6.col-sm-8.col-xs-12
+            row
+                .col-md-12
+                    .panel.panel-default
+                        .panel-heading
+                            h3.panel-title User details
+                        #userstats.panel-body
+                            ul
+
+                .col-md-12
+                    form.form-inline(role="form")
+                        .form-group
+                            label(for="username") Username
+                            input.form-control(type="text" id="username" name="username" placeholder="Search user...")
+                        button.btn.btn-primary(type="button" name="searchbutton" id="searchbutton") Search
