@@ -5,7 +5,7 @@ var userName = '';
 /* GET home page. */
 router.get('/', function(req, res, next) {
     userName = req.params.userName;
-    res.render('toplist', { title: 'Schoki Toplist' });
+    res.render('commands', { title: 'Befehlsliste' });
 });
 
 module.exports = router;

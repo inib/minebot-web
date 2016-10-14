@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var channelstats = require('./routes/channelstats');
-var commands = require('./routes/api_commands');
 var toplist = require('./routes/toplist');
+var commandlist = require('./routes/commandlist');
+var commands = require('./routes/api_commands');
 var users = require('./routes/api_users');
 var userstats = require('./routes/api_userstats');
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/stats', channelstats);
 app.use('/toplist', toplist);
+app.use('/commands', commandlist);
 app.use('/api/v1/commands', commands);
 app.use('/api/v1/users', users);
 app.use('/api/v1/userstats', userstats);
