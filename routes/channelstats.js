@@ -32,7 +32,7 @@ function getIcon(name, group, sub) {
 function getChatterList() {
     var tableContent = '';
     db.queryURL(chatURL, function (err, data) {
-        if (err) { return ''; }
+        if (err || data === null) { return '<p>No data</p>'; }
         var chatters = data.chatlines_chatters.splice(0, 15);
         for (var index = 0; index < chatters.length; index++) {
             var element = chatters[index];
@@ -56,7 +56,7 @@ function getEmoteName(id) {
 function getEmoteList() {
     var tableContent = '';
     db.queryURL(chatURL, function (err, data) {
-        if (err) { return ''; }
+        if (err || data === null) { return '<p>No data</p>'; }
         var emotes = data.emotes_twitch.splice(0, 15);
         for (var index = 0; index < emotes.length; index++) {
             var element = emotes[index];
