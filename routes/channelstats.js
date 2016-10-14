@@ -49,22 +49,15 @@ function getChatterList(cb) {
     });
 }
 
-function getEmoteName(id) {
-    db.queryURL(emoteURL, function (err, data) {
-        if (err) {cb(err,''); }
-        else { cb(null,data); }
-    });
-}
-
 function getEmoteList(cb) {
     var tableContent = '';
-    db.queryURL(emoteURL, function (err, data) {
+    db.queryURL(chatURL, function (err, data) {
         if (err || data === null) { cb(err, '<p>No data</p>'); }
         else {
             var emotes = data.emotes_twitch.splice(0, 15);
             for (var index = 0; index < emotes.length; index++) {
                 var element = emotes[index];
-                var emoteName = getEmoteName(element.key);
+                var emoteName = element.name;
                 tableContent += '<tr>';
                 tableContent += '<td>' + index + '.</td>';
                 tableContent += '<td><i src="https://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
