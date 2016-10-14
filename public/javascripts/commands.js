@@ -38,7 +38,7 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/commands/7/', function( data ) {        
+    $.getJSON( '/api/v1/commands/7/', function( data ) {        
         $.each(data.commandlist, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + data.prefix + this.command.name + '</td>';
