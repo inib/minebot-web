@@ -60,7 +60,7 @@ function getEmoteList(cb) {
                 var emoteName = element.name;
                 tableContent += '<tr>';
                 tableContent += '<td>' + index + '.</td>';
-                tableContent += '<td><i src="https://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
+                tableContent += '<td><img src="http://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
                 tableContent += '<td>' + element.amount + '</td>';
                 tableContent += '</tr>';
             }
