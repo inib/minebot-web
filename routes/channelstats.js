@@ -62,7 +62,7 @@ function getEmoteList() {
             var element = emotes[index];
             var emoteName = getEmoteName(element.key);
             tableContent += '<tr>';
-            tableContent += '<td>' + i + '.</td>';
+            tableContent += '<td>' + index + '.</td>';
             tableContent += '<td><i src="https://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
             tableContent += '<td>' + element.amount + '</td>';
             tableContent += '</tr>';
