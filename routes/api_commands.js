@@ -34,6 +34,7 @@ router.get('/:permission?', function (req, res, next) {
             res.status(500).json({ error: 'server error', response: err });
         }
         else {
+            console.log(rows);
             if (rows[0].length === 0) {
                 res.status(404).json({ error: 'no commands found matching criteria' });
             }
