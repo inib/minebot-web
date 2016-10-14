@@ -38,7 +38,7 @@ function getChatterList(cb) {
             for (var index = 0; index < chatters.length; index++) {
                 var element = chatters[index];
                 tableContent += '<tr>';
-                tableContent += '<td>' + index + '.</td>';
+                tableContent += '<td>' + (index + 1) + '.</td>';
                 tableContent += '<td>' + element.key + '</td>';
                 tableContent += '<td>' + element.amount + '</td>';
                 tableContent += '</tr>';
@@ -53,13 +53,13 @@ function getEmoteList(cb) {
     var tableContent = '';
     db.queryURL(chatURL, function (err, data) {
         if (err || data === null) { cb(err, '<p>No data</p>'); }
-        else {
+        else {            
             var emotes = data.emotes_twitch.splice(0, 15);
             for (var index = 0; index < emotes.length; index++) {
                 var element = emotes[index];
-                var emoteName = element.name;
+                var emoteName = (element.name === null ? '' : element.name);                
                 tableContent += '<tr>';
-                tableContent += '<td>' + index + '.</td>';
+                tableContent += '<td>' + (index + 1) + '.</td>';
                 tableContent += '<td><img src="http://static-cdn.jtvnw.net/emoticons/v1/' + element.key + '/1.0" alt="' + emoteName + '">' + emoteName + '</td>';
                 tableContent += '<td>' + element.amount + '</td>';
                 tableContent += '</tr>';
