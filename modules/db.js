@@ -9,7 +9,7 @@ var pool = mysql.createPool({
 });
 
 var Memento = require('memento-mysql');
-var memcachedConfig = MEMCACHED_PORT;
+var memcachedConfig = process.env.MEMCACHED_ADDR;
 var mysqlConfig = {
   host     : process.env.DB_HOST,
   user     : process.env.DB_USER,
