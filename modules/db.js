@@ -36,7 +36,8 @@ function queryApi(url, cb) {
     var queryHash = crypto.createHash('sha512').update(url).digest("hex");
     console.log('queryApi: ' + url);
     var reqOptions = {
-        hostname: url,
+        host: 'twitchstats.io',
+        path: url,
         rejectUnauthorized: false
     }
     memCon.get(queryHash, function (err, data) {
