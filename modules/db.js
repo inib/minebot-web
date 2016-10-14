@@ -3,6 +3,7 @@ var dbHost = process.env.DB_HOST;
 var dbName = process.env.DB_NAME;
 var dbPass = process.env.DB_PASS;
 var crypto = require('crypto');
+const http = require('http');
 
 var mysql = require('mysql');
 var pool = mysql.createPool({
