@@ -2,28 +2,32 @@ var express = require('express');
 var router = express.Router();
 var db = require('../modules/db');
 
+var query = 'SELECT 		t1.variable AS \'command\',' +
+            't1.value AS \'response\',' +
+            't2.value AS \'cooldown\',' +
+            't3.value AS \'permission\',' +
+            't4.value AS \'price\' ' +
+            'FROM 		phantombot_command 	t1 ' +
+            'LEFT JOIN	phantombot_cooldown	t2 ' +
+            'ON			t1.variable = t2.variable ' +
+            'LEFT JOIN  	phantombot_permcom    t3 ' +
+            'ON			t1.variable = t3.variable ' +
+            'LEFT JOIN  	phantombot_pricecom    t4 ' +
+            'ON			t1.variable = t4.variable ';
+
 /* GET Data. */
 router.get('/:permission?', function(req, res, next) {
 
   var perm = parseInt(!isNaN(req.params.permission) ? req.params.permission : 7);
-  var query =   'SELECT 		t1.variable AS \'command\','+
-		        't1.value AS \'response\','+
-			    't2.value AS \'cooldown\','+
-                't3.value AS \'permission\','+
-                't4.value AS \'price\' '+
-                'FROM 		phantombot_command 	t1 '+
-                'LEFT JOIN	phantombot_cooldown	t2 '+
-                'ON			t1.variable = t2.variable '+
-                'LEFT JOIN  	phantombot_permcom    t3 '+
-                'ON			t1.variable = t3.variable '+
-                'LEFT JOIN  	phantombot_pricecom    t4 '+
-                'ON			t1.variable = t4.variable ';
+  console.log('perm: ' + perm);
 
   if (perm >= 0) {
-      query +=  'WHERE t3.value = \'' + perm + '\'';
+      query +=  'WHERE t3.value = \'' + perm + '\';';
   } else {
       query += ';';
   }
+
+  console.log('query: ' + query);
   
   db.queryCache(query, function (err, rows, fields) {
     if (err) {
