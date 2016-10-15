@@ -36,6 +36,8 @@ jspm_packages
 # Environmental Variabls
 .env
 
+.vscode
+
 # =========================
 # Operating System Files
 # =========================
