@@ -1,8 +1,35 @@
 extends layout
 
-block pageContent
-                .row
-                    p 1-2-3 test
-                    p 4-5-6 test
+append navbar
+    +nav_item("/", "active") Home
+    +nav_item("toplist") Toplist
+    +nav_item("index.html") Contact
 
-
+append body
+    .container
+        h1= title
+        p Welcome to #{title}
+        +alert-info("This is a sample info alert.")
+        +navbar("Project name","dropdown_menu")
+        +navbar("Project name","dropdown_menu","inverse")
+        +navbar("Project name","dropdown_menu")
+            +nav_item("index.html","active") Home
+            +nav_item("about.html") About
+            +nav_item("contact.html") Contact
+        +navbar("Project name","dropdown_menu")
+            +nav_item("index.html","active") Home
+            +nav_item("about.html") About
+            +nav_item("contact.html") Contact
+            +nav_item_dropdown("#")(label="Dropdown")
+                +nav_item("#") Action
+                +nav_item("#") Another Action
+                +nav_item("#") Something else here
+                +nav_divider
+                +nav_header Nav header
+                +nav_item("#") Separated link
+                +nav_item("#") One more separated link
+        form.form-inline(role="form")
+            .form-group
+                label(for="username") Username
+                input.form-control(type="text" id="username" name="username" placeholder="Search user...")
+            button.btn.btn-primary(type="submit" name="searchbutton" id="searchbutton") Search

@@ -1,17 +1,17 @@
 extends layout
 
-block pageTitle 
-                .row
-                    .page-header.col-md-12
-                        h1= title
+append navbar
+    +nav_item("/") Home
+    +nav_item("toplist", "active") Toplist
+    +nav_item("index.html") Contact
 
-block pageContent
+append body
+    .container
                 .col-md-6.col-sm-8.col-xs-12
                     .panel.panel-default
                         .panel-body
-                            p
-                                span.glyphicon.glyphicon-hand-right
-                                span.sr-only Hinweis:
+                            +icon("hand-right")
+                            p                                
                                 | Subscriber erhalten #[strong 16] Schoki alle 10 Minuten während eines Streams.
                             p
                                 span.glyphicon.glyphicon-hand-right
@@ -46,5 +46,5 @@ block pageContent
                                     input.form-control(type="text" id="username" name="username" placeholder="Search user...")
                                 button.btn.btn-primary(type="button" name="searchbutton" id="searchbutton") Search
                             
-block scripts
+append scripts
         script(src='/javascripts/toplist.js')
