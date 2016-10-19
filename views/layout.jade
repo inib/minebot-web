@@ -1,10 +1,11 @@
 extends bootstrap
 
 append styles
-    // Custom styles for this template
+    // Custom styles
     link(href='/stylesheets/sticky-footer-navbar.css', rel='stylesheet')
-block body
-    // Fixed navbar
+    link(href='/stylesheets/style.css', rel='stylesheet')
+
+block body    
     +navbar-fixed("Minebot","navbar")
         ul.nav.navbar-nav
             block navbar
